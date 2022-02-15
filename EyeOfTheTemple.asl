@@ -45,6 +45,8 @@ startup
 {
     vars.Log = (Action<object>)(output => print("[EyeOfTheTemple] " + output));
     vars.Unity = Activator.CreateInstance(Assembly.LoadFrom(@"Components\ULibrary.bin").GetType("ULibrary.Unity"));
+
+    settings.Add("levelSplits", false, "Split when reaching a new area");
 }
 
 init
@@ -88,11 +90,9 @@ split
     if (old.isRunning == 1 && current.isRunning == 2)
         return true;
     
-    // If you also want to split each time you reach a new area in the game, use this:
-    //if (old.latestNewAreaID != current.latestNewAreaID)
-    //    return true;
-
-    return false;
+    // Split each time you reach a new area in the game.
+    if (old.latestNewAreaID != current.latestNewAreaID)
+        return settings["levelSplits"];
 }
 
 gameTime
