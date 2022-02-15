@@ -67,6 +67,9 @@ init
 
 update
 {
+    if (!vars.Unity.Loaded)
+        return false;
+    
     vars.Unity.Update();
 
     current.inGameTime = vars.Unity["inGameTime"].Current;
