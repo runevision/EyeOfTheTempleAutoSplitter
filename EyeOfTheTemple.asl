@@ -44,7 +44,7 @@ state("EyeOfTheTemple") { }
 startup
 {
     vars.Log = (Action<object>)(output => print("[EyeOfTheTemple] " + output));
-    vars.Unity = Activator.CreateInstance(Assembly.LoadFrom(@"Components\ULibrary.bin").GetType("ULibrary.Unity"));
+    vars.Unity = Activator.CreateInstance(Assembly.LoadFrom(@"Components\UnityASL.bin").GetType("ULibrary.Unity"));
 
     settings.Add("levelSplits", false, "Split when reaching a new area");
 }
