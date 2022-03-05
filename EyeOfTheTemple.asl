@@ -47,6 +47,17 @@ startup
     vars.Unity = Activator.CreateInstance(Assembly.LoadFrom(@"Components\UnityASL.bin").GetType("UnityASL.Unity"));
 
     settings.Add("levelSplits", false, "Split when reaching a new area");
+
+    if (timer.CurrentTimingMethod == TimingMethod.RealTime)
+    {
+        var mbox = MessageBox.Show(
+            "Eye of the Temple is timed based on game time, so it's recommended to switch to that.\nWould you like to switch to game time?",
+            "Eye of the Temple Autosplitter",
+            MessageBoxButtons.YesNo);
+
+        if (mbox == DialogResult.Yes)
+            timer.CurrentTimingMethod = TimingMethod.GameTime;
+    }
 }
 
 init
